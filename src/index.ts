@@ -1,6 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import userRoute from "./Routes/userRoute";
+import productRoute from "./Routes/productRoute";
+import { seedInitialProducts } from "./Services/productService";
 
 const app = express();
 const port = 3003;
@@ -18,8 +20,12 @@ mongoose
     console.log("Failed to Connect", error);
   });
 
+// Seed the products to DataBase
+seedInitialProducts();
+
 // Create a Routes
 app.use("/user", userRoute);
+app.use("/product", productRoute);
 
 app.listen(port, () => {
   console.log("The Server is Start On ");
