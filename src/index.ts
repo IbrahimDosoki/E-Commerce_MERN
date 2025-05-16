@@ -6,7 +6,7 @@ import cartRoute from "./Routes/cartRoute"
 import { seedInitialProducts } from "./Services/productService";
 
 const app = express();
-const port = 3003;
+const port = 3004;
 
 // Middel Wares
 app.use(express.json());
