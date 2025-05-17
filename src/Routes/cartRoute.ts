@@ -6,7 +6,8 @@ import {
   addItemToCart,
   updateItemCart,
   deleteItemInCart,
-  clearCart
+  clearCart,
+  checkout,
 } from "../Services/cartService";
 
 const router = express.Router();
@@ -50,6 +51,14 @@ router.delete(
 router.delete("/", validateJWT, async (req: ExtendRequest, res) => {
   const userId = req?.user?._id;
   const response = await clearCart({ userId });
+  res.status(response.statusCode).send(response.data);
+});
+
+//
+router.post("/checkout", validateJWT, async (req: ExtendRequest, res) => {
+  const userId = req?.user?._id;
+  const {address} = req.body;
+  const response = await checkout({ userId, address });
   res.status(response.statusCode).send(response.data);
 });
 
