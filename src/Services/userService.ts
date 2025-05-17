@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 const generateJWT = (data: any) => {
-  return jwt.sign(data, "ncr0rBvhJvU92cuBUbgvUbM1bktNbmfD");
+  return jwt.sign(data, process.env.JWT_SECRET || "");
 };
 interface RegisterParams {
   firstName: string;
